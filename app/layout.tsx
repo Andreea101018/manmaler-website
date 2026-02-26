@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Providers from "./providers";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -27,11 +28,17 @@ export default function RootLayout({
   return (
     <html lang="da">
       <body
-        className={`${jakarta.className} bg-[#FBF8F3] text-[#2B2B2B] flex flex-col min-h-screen antialiased`}
+        className={`${jakarta.className} flex flex-col min-h-screen`}
       >
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <Providers>
+          <Header />
+
+          <main className="flex flex-col flex-1">
+            {children}
+          </main>
+
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
